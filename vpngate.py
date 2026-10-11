@@ -85,14 +85,14 @@ EDGE_HOSTS = [
     h.strip()
     for h in os.environ.get(
         "EDGE_HOSTS",
-        
+
         "",
     ).split(",")
     if h.strip()
 ]
 
 # 优选 API 地址配置 (支持逗号分隔多个，可配置在 GitHub Action Secret / Env 中)
-OPTIMAL_API = os.environ.get("OPTIMAL_API", "https://cf.090227.xyz/ct?ips=6&port=443","https://cf.090227.xyz/cu?port=443","https://cf.090227.xyz/cmcc?ips=8&port=443")
+OPTIMAL_API = os.environ.get("OPTIMAL_API", "https://cf.090227.xyz/ct?ips=6&port=443,https://cf.090227.xyz/cu?port=443,https://cf.090227.xyz/cmcc?ips=8&port=443")
 
 NODES_URL = os.environ.get("NODES_URL", "https://a454979022-lang.github.io/gate/nodes.txt")
 
@@ -220,7 +220,7 @@ def fetch_optimal_api_endpoints(api_urls_str):
     """
     if not api_urls_str.strip():
         return []
-    
+
     endpoints = []
     urls = [u.strip() for u in api_urls_str.split(",") if u.strip()]
     for url in urls:
